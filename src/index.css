@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  /* Define your Custom Branding Colors here */
+  --color-navy-800: #1e3a8a;
+  --color-navy-900: #172554;
+  --color-gold-400: #facc15;
+  --color-gold-500: #eab308;
+}
+
+/* NOTE: v4 automatically handles the reset, 
+  so you don't need @tailwind base/components/utilities anymore.
+*/
