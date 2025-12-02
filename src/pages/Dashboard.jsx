@@ -224,7 +224,7 @@ const BASE_URL=import.meta.env.VITE_API_BASE
                         <th className="px-6 py-5">Host</th>
                         <th className="px-6 py-5">Time In</th>
                         <th className="px-6 py-5 text-center">Status</th>
-                        <th className="px-8 py-5 text-right">Actions</th>
+                        {/* <th className="px-8 py-5 text-right">Actions</th> */}
                     </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
@@ -261,11 +261,11 @@ const BASE_URL=import.meta.env.VITE_API_BASE
                                     {status}
                                     </div>
                                 </td>
-                                <td className="px-8 py-5 text-right">
+                                {/* <td className="px-8 py-5 text-right">
                                     <button className="text-slate-300 hover:text-[#0b1f3b] p-2 hover:bg-slate-100 rounded-lg transition-all transform hover:rotate-90">
                                     <MoreVertical size={18} />
                                     </button>
-                                </td>
+                                </td> */}
                             </tr>
                         );
                     })}
@@ -348,7 +348,7 @@ const BASE_URL=import.meta.env.VITE_API_BASE
                         <th className="px-6 py-5">Type</th>
                         <th className="px-6 py-5">Date</th>
                         <th className="px-6 py-5 text-center">Status</th>
-                        <th className="px-8 py-5 text-right">Actions</th>
+                        {/* <th className="px-8 py-5 text-right">Actions</th> */}
                     </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
@@ -379,11 +379,11 @@ const BASE_URL=import.meta.env.VITE_API_BASE
                                 {event.status}
                                 </div>
                             </td>
-                            <td className="px-8 py-5 text-right">
+                            {/* <td className="px-8 py-5 text-right">
                                 <button className="text-slate-300 hover:text-[#0b1f3b] p-2 hover:bg-slate-100 rounded-lg transition-all transform hover:rotate-90">
                                 <MoreVertical size={18} />
                                 </button>
-                            </td>
+                            </td> */}
                         </tr>
                     ))}
                     </tbody>

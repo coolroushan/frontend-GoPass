@@ -5,11 +5,13 @@ import {
   X,
   LayoutDashboard,
   UserPlus,
+ BadgeInfo, 
   Ticket,
   ClipboardList,
   FileText,
   LogOut,
   QrCode,
+  Mail 
 } from "lucide-react";
 
 const Layout = () => {
@@ -20,12 +22,14 @@ const navigate = useNavigate();
 
   const navItems = [
     { name: "Dashboard", path: "/", icon: <LayoutDashboard size={18} /> },
+    { name: "About", path: "/about", icon: <BadgeInfo size={18} /> },
     { name: "Events", path: "/events", icon: <Ticket size={18} /> },
     { name: "New Visitor", path: "/visitor", icon: <UserPlus size={18} /> },
     { name: "Event Passes", path: "/event-passes", icon: <Ticket size={18} /> },
     { name: "Attendance", path: "/attendance", icon: <ClipboardList size={18} /> },
     { name: "Scan Pass", path: "/qr-attendance", icon: <QrCode size={18} /> },
     { name: "Reports", path: "/reports", icon: <FileText size={18} /> },
+    { name: "Contact Us", path: "/contact", icon: <Mail  size={18} /> },
   ];
 const BASE_URL = import.meta.env.VITE_API_BASE;
   const handleLogout = async () => {

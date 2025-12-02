@@ -10,6 +10,8 @@ import QRAttendance from './pages/QRAttendance';
 import Events from './pages/Events';
 import PageNotFound from './pages/PageNotFound';
 import ProtectedRoute from './routes/ProtectedRoute';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 // Import the ProtectedRoute component
 
@@ -29,12 +31,14 @@ function App() {
           
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
+            <Route path="about" element={<About />} />
             <Route path="visitor" element={<VisitorRegistration />} />
             <Route path="event-passes" element={<EventPass />} />
             <Route path="attendance" element={<Attendance />} />
             <Route path="reports" element={<Reports />} />
             <Route path="qr-attendance" element={<QRAttendance />} />
             <Route path="events" element={<Events />} />
+            <Route path="contact" element={<Contact/>} />
           </Route>
 
         </Route>

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import QRCode from "react-qr-code";
 import html2canvas from 'html2canvas';
-import { Search, Download, Printer, Eye, X, Calendar, User, Phone, MapPin, Loader, Filter, Clock } from 'lucide-react';
+import { Search, Download, Printer, Eye, X, Calendar, User, Phone, MapPin, Loader, Filter, Clock, Trash2 } from 'lucide-react';
 
 // --- STYLES FOR PRINTING & ANIMATION ---
 const dashboardStyles = `
@@ -99,8 +99,8 @@ const EventPass = () => {
     const [visitors, setVisitors] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedVisitor, setSelectedVisitor] = useState(null);
-    const passRef = useRef(null); // Reference to the pass DOM element for downloading
-    const BASE_URL = import.meta.env.VITE_API_BASE
+    const passRef = useRef(null); 
+    const BASE_URL = import.meta.env.VITE_API_BASE;
 
     // 1. Fetch Data
     useEffect(() => {
@@ -118,12 +118,28 @@ const EventPass = () => {
         }
     };
 
-    // 2. Handle Print
+    // 2. Handle Delete
+    const handleDelete = async (id, e) => {
+        e.stopPropagation(); // Prevent opening the modal if user clicks delete
+        
+        if (window.confirm("Are you sure you want to permanently delete this visitor log?")) {
+            try {
+                await axios.delete(`${BASE_URL}/api/visitors/${id}`);
+                // Remove from local state instantly
+                setVisitors(prevVisitors => prevVisitors.filter(visitor => visitor._id !== id));
+            } catch (error) {
+                console.error("Error deleting visitor:", error);
+                alert("Failed to delete visitor. Please check your connection.");
+            }
+        }
+    };
+
+    // 3. Handle Print
     const handlePrint = () => {
         window.print();
     };
 
-    // 3. Handle Download (Image)
+    // 4. Handle Download (Image)
     const handleDownload = async () => {
         if (passRef.current) {
             const canvas = await html2canvas(passRef.current, { scale: 2 });
@@ -214,13 +230,23 @@ const EventPass = () => {
                                                     </span>
                                                 </td>
                                                 <td className="px-6 py-4 text-right">
-                                                    <button
-                                                        onClick={() => setSelectedVisitor(visitor)}
-                                                        className="inline-flex items-center justify-center p-2 text-[#0b1f3b] bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
-                                                        title="View Pass"
-                                                    >
-                                                        <Eye size={18} />
-                                                    </button>
+                                                    <div className="flex justify-end gap-2">
+                                                        <button
+                                                            onClick={() => setSelectedVisitor(visitor)}
+                                                            className="inline-flex items-center justify-center p-2 text-[#0b1f3b] bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+                                                            title="View Pass"
+                                                        >
+                                                            <Eye size={18} />
+                                                        </button>
+                                                        
+                                                        <button
+                                                            onClick={(e) => handleDelete(visitor._id, e)}
+                                                            className="inline-flex items-center justify-center p-2 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
+                                                            title="Delete Visitor"
+                                                        >
+                                                            <Trash2 size={18} />
+                                                        </button>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         ))}
@@ -243,13 +269,23 @@ const EventPass = () => {
                                                     {new Date(visitor.validUntil) > new Date() ? 'Active' : 'Expired'}
                                                 </span>
                                             </div>
-                                            <button
-                                                onClick={() => setSelectedVisitor(visitor)}
-                                                className="p-2 text-[#0b1f3b] bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
-                                                title="View Pass"
-                                            >
-                                                <Eye size={18} />
-                                            </button>
+                                            
+                                            <div className="flex gap-2">
+                                                <button
+                                                    onClick={() => setSelectedVisitor(visitor)}
+                                                    className="p-2 text-[#0b1f3b] bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+                                                    title="View Pass"
+                                                >
+                                                    <Eye size={18} />
+                                                </button>
+                                                <button
+                                                    onClick={(e) => handleDelete(visitor._id, e)}
+                                                    className="p-2 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
+                                                    title="Delete Visitor"
+                                                >
+                                                    <Trash2 size={18} />
+                                                </button>
+                                            </div>
                                         </div>
 
                                         <div className="flex flex-col gap-2 mb-2">
