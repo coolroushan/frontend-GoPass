@@ -98,26 +98,19 @@ const Events = () => {
 
   // 2. Create Event (Passed to AddModal)
 
+// 2. Create Event (Passed to AddModal)
   const handleCreateEvent = async (newEventData) => {
-
     try {
-
-      await axios.post(`${BASE_URL}/api/events", newEventData`);
-
+      // FIX: Close the backtick string, then pass newEventData as the second argument
+      await axios.post(`${BASE_URL}/api/events`, newEventData); 
+      
       await fetchEvents(); // Refresh list
-
       setIsModalOpen(false);
-
       alert("Event Created Successfully!");
-
     } catch (error) {
-
       console.error("Error creating event:", error);
-
       alert("Failed to create event.");
-
     }
-
   };
 
 
