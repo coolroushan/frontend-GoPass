@@ -67,10 +67,10 @@ const ListItem = ({ text, icon: Icon }) => (
 const About = () => {
   // Team Data extracted from your image
   const teamMembers = [
-    { name: "Aljeet Mishra", role: "Frontend Developer", color: "from-blue-600 to-blue-800" },
+    { name: "Kamaljeet Mishra", role: "Frontend Developer", color: "from-blue-600 to-blue-800" },
     { name: "Sakshi Deep", role: "Frontend Developer", color: "from-teal-500 to-emerald-600" },
     { name: "Aarohi Sharma", role: "Software Tester", color: "from-indigo-500 to-purple-600" },
-    { name: "Raushan Kumar", role: "Backend Developer", color: "from-slate-700 to-slate-900" },
+    { name: "Roushan Kumar", role: "Backend Developer", color: "from-slate-700 to-slate-900" },
   ];
 
   return (
