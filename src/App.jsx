@@ -45,7 +45,7 @@ function App() {
 
         {/* --- 404 PAGE --- */}
         <Route path="*" element={<PageNotFound />} />
-        {/* {all routes} */}
+        
       </Routes>
     </Router>
   );
